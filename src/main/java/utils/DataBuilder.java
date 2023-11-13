@@ -9,6 +9,8 @@ public class DataBuilder {
 	
 	
 	
+
+	
 	public static JSONObject buildTodo() {
 		
 		JSONObject todoBuilder =  new JSONObject();
@@ -22,13 +24,14 @@ public class DataBuilder {
 	@SuppressWarnings("unchecked")
 	public static JSONObject buildUser() {
 		JSONObject user = new JSONObject();
-		Faker faker = new Faker();
+		Faker faker =  new Faker();
 		
 		user.put("name", faker.name().firstName());
 		user.put("email", faker.internet().safeEmailAddress());
-		user.put("age", faker.number().numberBetween(5,130));
-		//user.put("gender", );
+		user.put("age", faker.number().numberBetween(5, 130));
+		user.put("gender", "f");
+		
 		return user;
+		
 	}
-
 }

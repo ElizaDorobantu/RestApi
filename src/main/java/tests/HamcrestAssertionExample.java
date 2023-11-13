@@ -3,6 +3,7 @@ import static io.restassured.RestAssured.given;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotEquals;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.hamcrest.MatcherAssert.*;
@@ -12,6 +13,9 @@ import org.testng.annotations.Test;
 
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
+
+import static utils.NumberChecker.*;
+import static utils.NumberIsPositive.*;
 
 public class HamcrestAssertionExample {
 	
@@ -107,6 +111,41 @@ public class HamcrestAssertionExample {
 		
 		assertThat(movies, both(hasSize(lessThan(6))).and(hasToString(containsString("films/6"))));
 	
+		String[] array = {jsnPath.getString("climate"),jsnPath.getString("terrain"),
+				jsnPath.getString("diameter"), jsnPath.getString("gravity"),
+				jsnPath.getString("name")}; 
+		System.out.println(array[0]);
+		assertThat(array, is(not(emptyArray())));
+		assertThat(array, is(not(nullValue())));
+		
+		System.out.println(Arrays.toString(array));
+		
+		assertThat(array, arrayContaining("arid", "desert", "10465", "1 standard", "Tatooine"));
+		assertThat(array, arrayContainingInAnyOrder( "desert", "arid","10465", "1 standard", "Tatooine"));
+		
+		
+		assertThat(resp.asString(), containsStringIgnoringCase("ARID") );
+		assertThat(resp.asString(), stringContainsInOrder("name","rotation_period" ));
+		
+		//and
+		//assertThat(resp.asString(), both(containsString("url2").and(containsString(diameter))));
+		//or
+		assertThat(name, either(is("Tatooine123")).or(is("Tatooine2")).or(is("Tatooine5")));
+		
+		String rotation = jsnPath.getString("rotation_period");
+		String climate = jsnPath.getString("climate");
+		String gravity = jsnPath.getString("gravity");
+		
+		System.out.println("-----------------");
+		System.out.println(rotation);
+		System.out.println(climate);
+		System.out.println(gravity);
+		
+		assertThat(rotation, is(numbersOnly()));
+		assertThat(gravity, is(not(numbersOnly())));
+		
+		assertThat(Integer.parseInt(rotation), is(positiveNumber()));
+		assertThat(-7, is(positiveNumber()));
 	}
 	
 
