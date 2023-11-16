@@ -9,8 +9,6 @@ public class DataBuilder {
 	
 	
 	
-
-	
 	public static JSONObject buildTodo() {
 		
 		JSONObject todoBuilder =  new JSONObject();
@@ -33,5 +31,27 @@ public class DataBuilder {
 		
 		return user;
 		
+	}
+	
+	public static JSONObject buildToken() {
+		JSONObject token = new JSONObject();
+		token.put("username", "admin");
+		token.put("password", "password123");
+		return token;
+	}
+
+	public static JSONObject buildBooking() {
+		JSONObject booking = new JSONObject();
+		booking.put("firstname", "Jim");
+		booking.put("lastname", "Brown");
+		booking.put("totalprice", 111);
+		booking.put("depositpaid", true);
+			JSONObject bookingDates = new JSONObject();
+			bookingDates.put("checkin", "2018-01-01");
+			bookingDates.put("checkout", "2019-01-01");
+		booking.put("bookingdates", bookingDates);
+		booking.put("additionalneeds", "Breakfast");
+		
+		return booking;
 	}
 }

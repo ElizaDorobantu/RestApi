@@ -13,15 +13,16 @@ public class NumberChecker extends TypeSafeMatcher<String>{
 	@Override
 	protected boolean matchesSafely(String item) {
 		try {
-			Integer.parseInt(item);
+			Integer.parseInt(item);// "123" --> TRUE //Abc2000 --> False
 			return true;
-		} catch(Exception e) {
+			
+		}catch(Exception e) {
 			return false;
-		}
+		}	
 	}
 	
 	public static Matcher<String> numbersOnly(){
 		return new NumberChecker();
 	}
-	
+
 }

@@ -8,6 +8,7 @@ import java.util.List;
 
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
+import static org.junit.Assert.assertThat;
 
 import org.testng.annotations.Test;
 
@@ -76,76 +77,103 @@ public class HamcrestAssertionExample {
 		assertThat(name, matchesPattern("[A-Za-z0-9]+"));
 		String diameter =  jsnPath.getString("diameter");
 		assertThat(diameter, matchesPattern("[0-9]+"));
-
-		List <String> movies = jsnPath.getList("films");
+		
+		List<String> movies = jsnPath.getList("films");
 		System.out.println(movies.get(1));
 		
-		assertThat(movies, contains("https://swapi.dev/api/films/1/", 
+		assertThat(movies, contains(
+				"https://swapi.dev/api/films/1/", 
 		        "https://swapi.dev/api/films/3/", 
 		        "https://swapi.dev/api/films/4/", 
 		        "https://swapi.dev/api/films/5/", 
 		        "https://swapi.dev/api/films/6/"));
 		
+
 		assertThat(movies, contains(
 				startsWith("https://sw"), 
 		        endsWith("3/"), 
 		        equalTo("https://swapi.dev/api/films/4/"), 
-		        startsWith("https://swapi.dev/"), 
+		        startsWith("https://swapi.dev"), 
 		        endsWith("api/films/6/")));
 		
 		assertThat(movies, contains(
 				startsWith("https://sw"), 
 		        endsWith("3/"), 
 		        equalTo("https://swapi.dev/api/films/4/"), 
-		        startsWith("https://swapi.dev/"), 
+		        startsWith("https://swapi.dev"), 
 		        equalTo("https://swapi.dev/api/films/6/")));
 	
+		
 		assertThat(movies, hasItem("https://swapi.dev/api/films/6/"));
 		assertThat(movies, hasItems("https://swapi.dev/api/films/6/","https://swapi.dev/api/films/4/"));
 		assertThat(movies, hasItem(startsWith("http")));
 		assertThat(movies, hasItem(containsString("swapi")));
+		assertThat(movies, hasItems(startsWith("http"), containsString("swapi")));
+		
 		
 		assertThat(movies, hasSize(5));
 		assertThat(movies, hasSize(lessThan(10)));
 		assertThat(movies, hasSize(greaterThan(3)));
 		
 		assertThat(movies, both(hasSize(lessThan(6))).and(hasToString(containsString("films/6"))));
-	
-		String[] array = {jsnPath.getString("climate"),jsnPath.getString("terrain"),
+
+		String[] array = {jsnPath.getString("climate"), jsnPath.getString("terrain"),
 				jsnPath.getString("diameter"), jsnPath.getString("gravity"),
-				jsnPath.getString("name")}; 
+				jsnPath.getString("name")};
+
 		System.out.println(array[0]);
 		assertThat(array, is(not(emptyArray())));
 		assertThat(array, is(not(nullValue())));
 		
 		System.out.println(Arrays.toString(array));
 		
-		assertThat(array, arrayContaining("arid", "desert", "10465", "1 standard", "Tatooine"));
-		assertThat(array, arrayContainingInAnyOrder( "desert", "arid","10465", "1 standard", "Tatooine"));
+		assertThat(array, arrayContaining(
+				"arid", "desert", "10465", "1 standard", "Tatooine"
+				));
 		
+		
+		assertThat(array, arrayContainingInAnyOrder(
+				"Tatooine","arid", "desert", "10465", "1 standard" ));
+		
+		System.out.println(resp.asString());
 		
 		assertThat(resp.asString(), containsStringIgnoringCase("ARID") );
 		assertThat(resp.asString(), stringContainsInOrder("name","rotation_period" ));
-		
+
 		//and
-		//assertThat(resp.asString(), both(containsString("url2").and(containsString(diameter))));
+		assertThat(resp.asString(), both(containsString("url")).and(containsString(diameter)));
 		//or
-		assertThat(name, either(is("Tatooine123")).or(is("Tatooine2")).or(is("Tatooine5")));
+		assertThat(name, either(is("Tatooine")).or(is("Tatooine2")).or(is(not("Tatooine5"))));
+	
+		/*
+		 *  "rotation_period": "23", 
+    "orbital_period": "304", 
+    "diameter": "10465", 
+    "climate": "arid", 
+    "gravity": "1 standard", 
+    "terrain": "desert", 
+    "surface_water": "1", 
+		 */
 		
 		String rotation = jsnPath.getString("rotation_period");
 		String climate = jsnPath.getString("climate");
 		String gravity = jsnPath.getString("gravity");
 		
-		System.out.println("-----------------");
+		System.out.println("------------------------------------");
 		System.out.println(rotation);
 		System.out.println(climate);
 		System.out.println(gravity);
+	
 		
 		assertThat(rotation, is(numbersOnly()));
 		assertThat(gravity, is(not(numbersOnly())));
 		
-		assertThat(Integer.parseInt(rotation), is(positiveNumber()));
-		assertThat(-7, is(positiveNumber()));
+		assertThat(Integer.parseInt(rotation), is(postiveNumber()));
+		
+		assertThat(-7, is(not(postiveNumber())));
+
+		assertThat(-7, is(postiveNumber()));
+		
 	}
 	
 
