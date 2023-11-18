@@ -14,7 +14,7 @@ public class BaseComponentTemaCurs40 {
 	@BeforeClass
 	public void setup() {
 		
-		RestAssured.baseURI = "https://fakerestapi.azurewebsites.net/api/v1/Books";
+		RestAssured.baseURI = "https://fakerestapi.azurewebsites.net/";
 		
 	}
 	

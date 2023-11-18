@@ -32,7 +32,7 @@ public void testJsonFile() throws FileNotFoundException, IOException, ParseExcep
 		
 		for(Object todo : todoList) {
 			JSONObject objTodo = (JSONObject)todo;
-			Response response = doPostRequest("/api/save", objTodo.toJSONString(), 200);
+			Response response = doPostRequest("/api/v1/Books", objTodo.toJSONString(), 200);
 			System.out.println(response.asPrettyString());
 			
 		}
