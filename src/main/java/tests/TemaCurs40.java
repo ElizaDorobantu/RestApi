@@ -18,6 +18,7 @@ import com.github.javafaker.Faker;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
+import junit.framework.Assert;
 import utils.BaseComponentTemaCurs40;
 
 public class TemaCurs40 extends BaseComponentTemaCurs40{
@@ -34,10 +35,9 @@ public void testJsonFile() throws FileNotFoundException, IOException, ParseExcep
 			JSONObject objTodo = (JSONObject)todo;
 			Response response = doPostRequest("/api/v1/Books", objTodo.toJSONString(), 200);
 			System.out.println(response.asPrettyString());
+			Assert.assertEquals(response.jsonPath().getString("id"), 107);
 			
 		}
-				
-	}
-	
-	
+			
+	}	
 }
