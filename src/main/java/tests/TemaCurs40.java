@@ -3,54 +3,41 @@ package tests;
 import static org.testng.Assert.assertEquals;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.testng.annotations.Test;
 
 import com.github.javafaker.Faker;
 
 import io.restassured.RestAssured;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
+import utils.BaseComponentTemaCurs40;
 
-public class TemaCurs40 {
+public class TemaCurs40 extends BaseComponentTemaCurs40{
 	
-	@SuppressWarnings("unchecked")
-	@Test
-	public void postARequest( ) {
+	
+@Test	
+public void testJsonFile() throws FileNotFoundException, IOException, ParseException {
 		
-		File fisier = new File("dataTemaCurs40.json");
-		Faker faker = new Faker();
 		
-		JSONObject requestBody = new JSONObject();
-		requestBody.put("id", faker.idNumber());
-		requestBody.put("title", faker.book().title());
-		requestBody.put("description", faker.book().publisher());
-		requestBody.put("pageCount", faker.idNumber());
-		requestBody.put("excerpt", faker.chuckNorris().fact());
-		requestBody.put("publishDate", "2023-10-29T20:03:54.547Z");
+		JSONParser parser =  new JSONParser();
+		JSONArray todoList = (JSONArray) parser.parse(new FileReader("postRequestTemaCurs40.json"));;
 		
-		Response response = RestAssured 
-				.given()
-					.header("accespt","application/json")
-					.header("Content-Type","image/svg+xml")
-					//ex1 --> body as string
-					//.body("{\"title\":\"TestCeva\",\"body\":\"TestCeva\"}")
-					//ex2 -->body as file
-					//.body(new File ("data.json"))
-					//.body(fisier)
-					//ex3 --> body as JsonObject
-					.body(requestBody.toJSONString())
-				.when()
-					.post("https://keytodorestapi.herokuapp.com/api/save")
-				.then()
-					.assertThat().statusCode(200)
-					.extract().response();
-		
-		System.out.println(response.asPrettyString());
-		
-		String info = response.jsonPath().getString("info");
-		System.out.println(info);
-		assertEquals(info,"Todo saved! Nice job!");
+		for(Object todo : todoList) {
+			JSONObject objTodo = (JSONObject)todo;
+			Response response = doPostRequest("/api/save", objTodo.toJSONString(), 200);
+			System.out.println(response.asPrettyString());
+			
+		}
+				
 	}
+	
 	
 }

@@ -22,22 +22,22 @@ public class JsonPathExample extends BaseComponent{
 		
 		JsonPath jsonPath = response.jsonPath();
 		// accesez obiect pe baza de index
-		System.out.println(jsonPath.getString("[6]"));
-		System.out.println(jsonPath.getString("[6].name"));
-		System.out.println(jsonPath.getString("[6]._id"));
-		System.out.println(jsonPath.getString("[6].age"));
+		System.out.println(jsonPath.getString("[3]"));
+		System.out.println(jsonPath.getString("[3].name"));
+		System.out.println(jsonPath.getString("[3]._id"));
+		System.out.println(jsonPath.getString("[3].age"));
 		//accesez direct attribut fara index
 		System.out.println(jsonPath.getString("name"));
 		System.out.println(jsonPath.getString("gender"));
 		System.out.println("-----------------------------------------------------------");
 		
-		System.out.println(jsonPath.getList("findAll{it.gender == 'm'}.name"));
-		List<String> allMales = jsonPath.getList("findAll{it.gender == 'm'}.name");
+		System.out.println(jsonPath.getList("findAll{it.gender == 'f'}.name"));
+		List<String> allMales = jsonPath.getList("findAll{it.gender == 'f'}.name");
 		System.out.println(allMales);
 		List<String> allFemales = jsonPath.getList("findAll{it.gender == 'f'}.name");
 		System.out.println(allFemales);
 		
-		List<String> allElla = jsonPath.getList("findAll{it.name == 'Ella'}.age");
+		List<String> allElla = jsonPath.getList("findAll{it.name == 'Sherryl'}.age");
 		System.out.println(allElla);
 		
 		/*
