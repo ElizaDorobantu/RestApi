@@ -19,6 +19,7 @@ public class DataBuilder {
 		return todoBuilder;
 	}
 	
+	
 	@SuppressWarnings("unchecked")
 	public static JSONObject buildUser() {
 		JSONObject user = new JSONObject();

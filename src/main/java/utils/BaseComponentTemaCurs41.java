@@ -10,12 +10,12 @@ import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
-public class BaseComponent {
+public class BaseComponentTemaCurs41 {
 
 	@BeforeClass
 	public void setup() {
 		
-		RestAssured.baseURI = "https://keytodorestapi.herokuapp.com";
+		RestAssured.baseURI = "https://keytrcrud.herokuapp.com/";
 		
 	}
 	

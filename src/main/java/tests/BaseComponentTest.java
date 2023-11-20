@@ -36,8 +36,14 @@ public class BaseComponentTest extends BaseComponent{
 		Response response = doPutRequest("/api/todos/", id, DataBuilder.buildTodo().toJSONString(), 201);
 		System.out.println(response.asPrettyString());
 		assertThat(response.jsonPath().getString("msg"), is(equalTo("Item updated")));//Hamcrest assert
-
-		
+	}
+	
+	@Test(priority=4)
+	public void deleteTodo() {
+		Response response = doDeleteRequest("/api/delete/", id, 200);
+		System.out.println(response.asPrettyString());
+		assertThat(response.jsonPath().getString("msg"), is(equalTo("Event deleted.")));
+		assertEquals(response.jsonPath().getString("msg"),"Event deleted.");
 	}
 	
 
