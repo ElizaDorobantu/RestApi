@@ -14,7 +14,7 @@ import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import utils.BaseComponent;
 
-public class SendFromJsonFile  extends BaseComponent{
+public class SendFromJsonFile  extends BaseComponent {
 
 	
 	//read multiple json objects

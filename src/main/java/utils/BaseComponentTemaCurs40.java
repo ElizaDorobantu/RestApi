@@ -32,4 +32,17 @@ public class BaseComponentTemaCurs40 {
 		return response;	
 		
 	}
+	
+	public static Response doGetAllRequest(String path, int statusCode) {
+		Response response = 
+				given().
+					contentType(ContentType.JSON).
+				when().
+					get(path).
+				then().
+					statusCode(statusCode).
+					extract().response();
+		return response;
+	
+	}
 }

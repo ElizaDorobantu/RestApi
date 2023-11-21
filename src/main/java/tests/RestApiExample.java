@@ -12,7 +12,7 @@ import com.github.javafaker.Faker;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 
-public class RestApiExample {
+public class RestApiExample{
 
 	@SuppressWarnings("unchecked")
 	@Test

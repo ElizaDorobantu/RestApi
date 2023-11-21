@@ -1,6 +1,6 @@
 package tests;
 
-public class GitResetTutorial {
+public class GitResetTutorial{
 
 	
 	/*

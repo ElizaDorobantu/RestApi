@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.List;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -22,9 +23,9 @@ import junit.framework.Assert;
 import utils.BaseComponentTemaCurs40;
 
 public class TemaCurs40 extends BaseComponentTemaCurs40{
+	String id;	
 	
-	
-@Test	
+@Test(priority=1)	
 public void testJsonFile() throws FileNotFoundException, IOException, ParseException {
 		
 		
@@ -40,4 +41,15 @@ public void testJsonFile() throws FileNotFoundException, IOException, ParseExcep
 		}
 			
 	}	
+
+
+	@Test(priority=2)
+	public void temaJSONPath() {
+		Response response = doGetAllRequest("/api/v1/Books", 200);
+		JsonPath jsonPath = response.jsonPath();
+		//System.out.println(jsonPath.getList("findAll{it.pageCount>=1000 & it.pageCount<=2000}"));
+		List<String> allBooks = jsonPath.getList("findAll{it.pageCount>=1000 & it.pageCount<=2000}");
+		System.out.println(allBooks.size());
+		assertEquals(allBooks.size(),11);
+}
 }

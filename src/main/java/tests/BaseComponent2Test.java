@@ -7,10 +7,10 @@ import utils.BaseComponent;
 import utils.BaseComponent2;
 import utils.DataBuilder;
 
-public class BaseComponent2Test extends BaseComponent2{
+public class BaseComponent2Test extends BaseComponent2 {
 
 	String id;
-	
+	 
 	@Test(priority = 1)
 	public void testCreateUser() {
 		

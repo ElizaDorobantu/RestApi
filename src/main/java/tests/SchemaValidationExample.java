@@ -8,7 +8,7 @@ import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
 
-public class SchemaValidationExample {
+public class SchemaValidationExample{
 
 	@Test
 	public void validateSchema() {

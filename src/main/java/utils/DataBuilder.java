@@ -1,20 +1,30 @@
 package utils;
 
+import java.io.FileWriter;
+import java.io.IOException;
+
 import org.codehaus.groovy.ast.AstToTextHelper;
 import org.json.simple.JSONObject;
 
 import com.github.javafaker.Faker;
 
-public class DataBuilder {
+public class DataBuilder{
 	
 	
 	
-	public static JSONObject buildTodo() {
+	public static JSONObject buildTodo(){
 		
 		JSONObject todoBuilder =  new JSONObject();
 		Faker faker =  new Faker();
 		todoBuilder.put("title", faker.cat().name());
 		todoBuilder.put("body", faker.chuckNorris().fact());
+		
+		
+		try(FileWriter file =  new FileWriter("todo.json")){
+			file.write(todoBuilder.toJSONString());			
+		}catch(IOException e) {
+			e.printStackTrace();
+		}
 		
 		return todoBuilder;
 	}

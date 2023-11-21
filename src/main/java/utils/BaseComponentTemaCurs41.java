@@ -10,7 +10,7 @@ import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
-public class BaseComponentTemaCurs41 {
+public class BaseComponentTemaCurs41{
 
 	@BeforeClass
 	public void setup() {

@@ -8,7 +8,7 @@ import utils.DataBuilder;
 
 import static io.restassured.RestAssured.given;
 
-public class RestAssuredAuthExample{
+public class RestAssuredAuthExample {
 	
 	String token;
 	String id;

@@ -18,7 +18,7 @@ import io.restassured.response.Response;
 import static utils.NumberChecker.*;
 import static utils.NumberIsPositive.*;
 
-public class HamcrestAssertionExample {
+public class HamcrestAssertionExample{
 	
 	
 	@SuppressWarnings("unchecked")

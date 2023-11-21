@@ -6,11 +6,13 @@ import org.testng.annotations.BeforeClass;
 import com.github.javafaker.Faker;
 import static io.restassured.RestAssured.given;
 
+import java.util.List;
+
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
-public class BaseComponent {
+public class BaseComponent{
 
 	@BeforeClass
 	public void setup() {
@@ -35,13 +37,27 @@ public class BaseComponent {
 	}
 	
 	
-	public static Response doGetRequest(String path, String id, int statusCode) {
+	public static Response doGetRequest (String path, String id, int statusCode) {
 		
 		Response response = 
 				given().
 					contentType(ContentType.JSON).
 				when().
 					get(path + id).
+				then().
+					statusCode(statusCode).
+					extract().response();
+		return response;
+		
+	}
+	
+public static Response doGetAllRequest (String path, int statusCode) {
+		
+		Response response = 
+				given().
+					contentType(ContentType.JSON).
+				when().
+					get(path).
 				then().
 					statusCode(statusCode).
 					extract().response();
