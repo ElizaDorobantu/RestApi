@@ -35,7 +35,7 @@ public void testJsonFile() throws FileNotFoundException, IOException, ParseExcep
 			JSONObject objTodo = (JSONObject)todo;
 			Response response = doPostRequest("/api/v1/Books", objTodo.toJSONString(), 200);
 			System.out.println(response.asPrettyString());
-			Assert.assertEquals(response.jsonPath().getString("id"), 107);
+			Assert.assertEquals(response.jsonPath().getString("id"), "107");
 			
 		}
 			
