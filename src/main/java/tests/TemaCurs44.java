@@ -11,7 +11,21 @@ import org.hamcrest.core.IsEqual;
 import org.testng.annotations.Test;
 
 public class TemaCurs44 {
-
+/*
+ * Vom verifica:
+ Numele este Luke Skywalker
+ Height este mai mare de 171
+ Mass este mai mic decat 80
+ Intr-un singur assert vom verifica daca valorile atributelor skin, eye si hari sunt fair, blue 
+si blond
+ Birth-year nu este o valoare doar numerica
+ Daca species este o colectie goala a clasei String
+ Daca starship si vehicles au acealsi size
+ Daca starship si vehicles nu sunt la fel
+ * 
+ */
+	
+	
 	@Test
 	public void hamcrestMatchers() {
 		

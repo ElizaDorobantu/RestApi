@@ -7,7 +7,7 @@ import org.hamcrest.Matcher;
 public class NumberIsPositive extends TypeSafeMatcher<Integer>{
 
 	public void describeTo(Description description) {
-		description.appendText(" postive number ");
+		description.appendText(" positive number ");
 	}
 
 	@Override
