@@ -64,7 +64,7 @@ https://swapi.dev/api/films/6/" sau https://swapi.dev/api/films/5/”
 		System.out.println(model);
 		assertThat(model, both(containsString("Imperial")).and(containsString("Destroyer")));
 		
-		String cargoCapacity = jsnPath.getString("cargo_capacity");
+		Double cargoCapacity = jsnPath.getDouble("cargo_capacity");
 		System.out.println(cargoCapacity);
 		assertThat(cargoCapacity, is(cargoCapacityCheck()));
 	}

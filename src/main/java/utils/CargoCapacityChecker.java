@@ -4,7 +4,7 @@ import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
 
-public class CargoCapacityChecker extends TypeSafeMatcher<String>{
+public class CargoCapacityChecker extends TypeSafeMatcher<Double>{
 
 	@Override
 	public void describeTo(Description description) {
@@ -13,12 +13,12 @@ public class CargoCapacityChecker extends TypeSafeMatcher<String>{
 	}
 
 	@Override
-	protected boolean matchesSafely(String item) {
+	protected boolean matchesSafely(Double item) {
 		
-		return Double.parseDouble(item)> 25000000;
+		return item> 25000000;
 	}
 
-	public static Matcher<String> cargoCapacityCheck(){
-		return new NumberChecker();
+	public static Matcher<Double> cargoCapacityCheck(){
+		return new CargoCapacityChecker();
 	}
 }
