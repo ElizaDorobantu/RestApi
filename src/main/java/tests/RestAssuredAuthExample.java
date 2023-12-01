@@ -8,7 +8,7 @@ import utils.DataBuilder;
 
 import static io.restassured.RestAssured.given;
 
-public class RestAssuredAuthExample {
+public class RestAssuredAuthExample{
 	
 	String token;
 	String id;
@@ -38,7 +38,7 @@ public class RestAssuredAuthExample {
 				then().extract().response();
 		
 		System.out.println(result.asPrettyString());
-		
+		System.out.println(result.jsonPath().getString("bookingid"));
 		id = result.jsonPath().getString("bookingid");
 	}
 	
