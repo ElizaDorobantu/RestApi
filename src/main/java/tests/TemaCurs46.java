@@ -9,6 +9,7 @@ import utils.DataBuilder;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
 import org.hamcrest.core.IsEqual;
 
@@ -104,5 +105,29 @@ public class TemaCurs46 {
 				then().extract().response();
 		System.out.println(result.asPrettyString());
 		assertThat(result.jsonPath().getString("msg"), is(equalTo("Event deleted.")));
+	}
+	
+	@Test(priority=7)
+	public void checkSchema() {
+		
+		Response result = 
+				given().
+					get("https://swapi.dev/api/people/4/").
+				then().extract().response();
+		System.out.println(result.asPrettyString());
+		
+		assertThat(result.asString(),matchesJsonSchemaInClasspath("schemaTema46.json"));
+	}
+	
+	@Test(priority=8)
+	public void checkSchemaModificata() {
+		
+		Response result = 
+				given().
+					get("https://swapi.dev/api/people/4/").
+				then().extract().response();
+		System.out.println(result.asPrettyString());
+		
+		assertThat(result.asString(),matchesJsonSchemaInClasspath("schemaModificataTema46.json"));
 	}
 }
